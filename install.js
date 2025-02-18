@@ -21,7 +21,7 @@ module.exports = {
         venv_python: "3.11",
         path: "app",
         message: [
-          "uv pip install --editable ."
+          "uv pip install -e '.[dev]'"
         ]
       }
     },
