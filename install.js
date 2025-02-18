@@ -11,11 +11,17 @@ module.exports = {
     {
       method: "shell.run",
       params: {
+        message: "brew install uv",
+      }
+    },
+    {
+      method: "shell.run",
+      params: {
         venv: "env",
         venv_python: "3.11",
         path: "app",
         message: [
-          "uv pip install -r requirements.txt",
+          "uv pip install --editable ."
         ]
       }
     },
