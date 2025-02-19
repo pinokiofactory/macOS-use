@@ -61,7 +61,7 @@ module.exports = {
           default: true,
           icon: "fa-solid fa-power-off",
           text: "Start",
-          href: "start.js",
+          href: ["update.js", "start.js"],
         }, {
           icon: "fa-solid fa-plug",
           text: "Update",
