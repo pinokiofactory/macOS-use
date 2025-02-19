@@ -11,5 +11,10 @@ module.exports = {
         "PYTHONPATH": "."
       }
     }
+  }, {
+    method: "local.set",
+    params: {
+       url: "{{input.event[0]}}"
+    }
   }]
 } 
