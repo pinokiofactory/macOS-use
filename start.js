@@ -5,7 +5,7 @@ module.exports = {
       path: "app",
       venv: "env",
       message: [
-        "python examples/gradio_app.py"
+        "python gradio_app/app.py"
       ],
       env: {
         "PYTHONPATH": "."
