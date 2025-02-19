@@ -1,4 +1,5 @@
 module.exports = {
+  daemon: true,
   run: [{
     method: "shell.run",
     params: {
@@ -9,12 +10,18 @@ module.exports = {
       ],
       env: {
         "PYTHONPATH": "."
-      }
+      },
+      on: [{
+        // Pattern to match Gradio's local URL output
+        "event": "/http:\\/\\/\\S+/",
+        "done": true
+      }]
     }
   }, {
     method: "local.set",
     params: {
-       url: "{{input.event[0]}}"
+      // Store the matched URL to display in the UI
+      url: "{{input.event[0]}}"
     }
   }]
 } 
