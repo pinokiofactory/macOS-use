@@ -2,7 +2,7 @@ const path = require('path')
 module.exports = {
   version: "0.1",
   title: "macOS-use",
-  description: "We make AI agents that control Mac apps",
+  description: "We make AI agents that control Mac apps: https://github.com/browser-use/macOS-use",
   icon: "icon.png",
   menu: async (kernel, info) => {
     let installed = info.exists("app/env")
