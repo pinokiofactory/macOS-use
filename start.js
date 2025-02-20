@@ -5,12 +5,8 @@ module.exports = async (kernel) => {
     run: [{
       method: "shell.run",
       params: {
-        env: {
-          SERVER_PORT: port,
-//          LAUNCH_BROWSER: "True"
-        },
         message: [
-          "osascript -e 'tell app \"Terminal\" to do script \"{{path.resolve(cwd, 'app/env/bin/python')}} {{path.resolve(cwd, 'app/gradio_app/app.py')}}\"'"
+          `SERVER_PORT=${port} osascript -e 'tell app \"Terminal\" to do script \"{{path.resolve(cwd, 'app/env/bin/python')}} {{path.resolve(cwd, 'app/gradio_app/app.py')}}\"'`
         ],
       }
     }, {
