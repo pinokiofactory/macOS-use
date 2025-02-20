@@ -5,19 +5,21 @@ module.exports = async (kernel) => {
     run: [{
       method: "shell.run",
       params: {
-        message: [
-          `SERVER_PORT=${port} osascript -e 'tell app \"Terminal\" to do script \"{{path.resolve(cwd, 'app/env/bin/python')}} {{path.resolve(cwd, 'app/gradio_app/app.py')}}\"'`
-        ],
+        env: { SERVER_PORT: port },
+        message: 'python run.py',
+        on: [{
+          event: "/PID:([0-9]+)/",
+          done: true
+        }]
       }
     }, {
       method: "process.wait",
       params: {
-        sec: 3
+        sec: 1
       }
     }, {
       method: "local.set",
       params: {
-        // Store the matched URL to display in the UI
         url: "http://127.0.0.1:" + port
       }
     }]

@@ -4,7 +4,7 @@ module.exports = {
       method: "shell.run",
       params: {
         message: [
-          "git clone https://github.com/cocktailpeanut/macOS-use app",
+          "git clone https://github.com/browser-use/macOS-use app",
         ]
       }
     },
