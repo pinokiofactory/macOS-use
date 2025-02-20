@@ -10,6 +10,11 @@ module.exports = async (kernel) => {
         ],
       }
     }, {
+      method: "process.wait",
+      params: {
+        sec: 3
+      }
+    }, {
       method: "local.set",
       params: {
         // Store the matched URL to display in the UI
