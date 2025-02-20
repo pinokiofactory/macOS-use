@@ -13,11 +13,6 @@ module.exports = async (kernel) => {
         }]
       }
     }, {
-      method: "process.wait",
-      params: {
-        sec: 1
-      }
-    }, {
       method: "local.set",
       params: {
         url: "http://127.0.0.1:" + port

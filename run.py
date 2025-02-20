@@ -1,6 +1,22 @@
 import subprocess
+import http.client
+import urllib.request
+
 import os
 import signal
+import time
+from urllib.parse import urlparse
+def wait(url):
+    while True:
+        try:
+            code = urllib.request.urlopen(url).getcode()
+            if code == 200:
+                print(f"server running at {url}")
+                break
+        except Exception as e:
+            pass  # Ignore errors and keep checking
+        time.sleep(1)  # Wait 1 second before retrying
+
 def cleanup(signum, frame):
     global pid
     try:
@@ -22,6 +38,7 @@ return terminal_pid
     stdout, stderr = process.communicate()
     try:
         pid = int(stdout.strip())
+        wait(f"http://127.0.0.1:{os.environ.get('SERVER_PORT')}")
         print(f"PID:{pid}")
     except ValueError:
         print(f"Error retrieving Terminal PID: {stderr.decode()}")
