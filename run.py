@@ -6,6 +6,7 @@ import os
 import signal
 import time
 from urllib.parse import urlparse
+kill_scheduled=False
 def wait(url):
     while True:
         try:
@@ -18,11 +19,17 @@ def wait(url):
         time.sleep(1)  # Wait 1 second before retrying
 
 def cleanup(signum, frame):
-    global pid
-    try:
-        os.kill(int(pid), signal.SIGTERM)  # Sends a termination signal
-    except ProcessLookupError:
-        print(f'Process {pid} not found')
+    global pid, kill_scheduled
+    if kill_scheduled:
+        os.kill(os.getpid(), signal.SIGTERM)
+        sys.exit(0)
+    else:
+        try:
+            os.kill(int(pid), signal.SIGTERM)  # Sends a termination signal
+            kill_scheduled=True
+            cleanup(None, None)
+        except ProcessLookupError:
+            print(f'Process {pid} not found')
 def main():
     global pid
     cwd = os.getcwd()
